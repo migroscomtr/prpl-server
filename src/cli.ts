@@ -25,7 +25,6 @@ const commandLineArgs = require('command-line-args') as any;
 const commandLineUsage = require('command-line-usage') as any;
 const ansi = require('ansi-escape-sequences') as any;
 const rendertron = require('rendertron-middleware') as any;
-const prometheus = require('express-prometheus-middleware') as any;
 
 const argDefs = [
   {
@@ -82,12 +81,7 @@ const argDefs = [
     description:
         'The Cache-Control header to send for all requests except the ' +
         'entrypoint (default from config file or "max-age=60").',
-  },
-  {
-    name: 'monitoring',
-    type: Boolean,
-    description: 'Enables prometheus monitoring'
-  },
+  }
 ];
 
 export function run(argv: string[]) {
@@ -150,25 +144,6 @@ export function run(argv: string[]) {
   // the proxy), not of the proxy itself. We need this for HTTPS redirection
   // and bot rendering.
   app.set('trust proxy', true);
-
-  // Monitoring
-  if (args['monitoring']) {
-    console.info(`Enabling prometheus monitoring`);
-    const { monitoring } = config;
-    let authProvider = (_: any): boolean => { return true };
-
-    if (monitoring?.basicAuth) {
-      const { username, password } = monitoring?.basicAuth;
-      const token = Buffer.from(`${username}:${password}`).toString('base64');
-      authProvider = req => req.headers.authorization === `Basic ${token}`;
-    }
-
-    app.use(prometheus({
-      metricsPath: monitoring?.scrapeEndpoint,
-      authenticate: authProvider,
-      metricsApp: app
-    }));
-  }
 
   if (args['https-redirect']) {
     console.info(`Redirecting HTTP requests to HTTPS.`);
