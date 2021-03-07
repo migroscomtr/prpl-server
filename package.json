@@ -5,9 +5,7 @@
   "repository": "git@github.com:migroscomtr/prpl-server.git",
   "main": "lib/prpl.js",
   "types": "lib/prpl.d.ts",
-  "bin": {
-    "prpl-server": "bin/prpl-server"
-  },
+  "bin": "bin/prpl-server",
   "engines": {
     "node": ">=10.0"
   },
