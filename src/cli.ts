@@ -16,6 +16,8 @@ import * as compression from 'compression';
 import * as express from 'express';
 import * as fs from 'fs';
 import type {AddressInfo} from 'net';
+import {collectDefaultMetrics} from 'prom-client';
+import * as promBundle from 'express-prom-bundle';
 
 import * as prpl from './prpl';
 
@@ -89,6 +91,7 @@ const argDefs = [
 ];
 
 export function run(argv: string[]) {
+  collectDefaultMetrics();
   const args = commandLineArgs(argDefs, {argv});
 
   if (args.help) {
@@ -177,7 +180,20 @@ export function run(argv: string[]) {
       res.redirect(301, `https://${req.hostname}${req.url}`);
     });
   }
-
+  app.use((req, res, next) => {
+    if (req.path === '/prometheus') {
+      const authHeader = req.header('Authorization');
+      const token = Buffer.from(`${config.username}:${config.password}`).toString('base64');
+      const required = `Basic ${token}`;
+      if (authHeader !== required) {
+        res.setHeader('WWW-Authenticate', 'Basic');
+        res.sendStatus(401);
+        return;
+      }
+    }
+    next();
+  });
+  app.use(promBundle({metricsPath: '/prometheus'}));
   app.use(compression());
 
   if (args['bot-proxy']) {

@@ -5,7 +5,9 @@
   "repository": "git@github.com:migroscomtr/prpl-server.git",
   "main": "lib/prpl.js",
   "types": "lib/prpl.d.ts",
-  "bin": "bin/prpl-server",
+  "bin": {
+    "prpl-server": "bin/prpl-server"
+  },
   "engines": {
     "node": ">=10.0"
   },
@@ -30,9 +32,9 @@
     "command-line-usage": "^6.1.0",
     "compression": "^1.7.4",
     "express": "^4.17.1",
-    "express-prometheus-middleware": "^1.0.0",
+    "express-prom-bundle": "6.3.4",
     "http-errors": "^1.8.0",
-    "prom-client": "^12.0.0",
+    "prom-client": "13.1.0",
     "rendertron-middleware": "^0.1.5",
     "send": "^0.17.1",
     "statuses": "^2.0.0",
