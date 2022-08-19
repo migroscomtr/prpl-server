@@ -64,17 +64,8 @@ export interface Config {
     name?: string,
     browserCapabilities?: capabilities.BrowserCapability[],
   }[];
-
-  // Monitoring configuration for prometheus middleware
-  // Basic authentication is optional
-  // Default scrape endpoint is `/metrics`
-  monitoring?: {
-    scrapeEndpoint?: string;
-    basicAuth?: {
-      username: string,
-      password: string
-    },
-  };
+  username?: string;
+  password?: string;
 }
 
 // Matches URLs like "/foo/bar.png" but not "/foo.png/bar".
