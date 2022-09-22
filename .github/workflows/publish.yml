@@ -19,7 +19,7 @@ jobs:
         run: |
           git config --local user.email "heroci@startuphero.es"
           git config --local user.name "heroci"
-          npm version patch --no-git-tag-version
+          npm version patch
           git push
       - run: npm publish
         env:
