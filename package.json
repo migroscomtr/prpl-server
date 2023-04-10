@@ -49,6 +49,7 @@
     "@types/statuses": "^2.0.0",
     "@types/valid-url": "^1.0.3",
     "chai": "^4.2.0",
+    "mocha": "^10.2.0",
     "clang-format": "^1.4.0",
     "source-map-support": "^0.5.19",
     "tsc-then": "^1.1.0",
