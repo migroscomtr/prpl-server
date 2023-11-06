@@ -101,15 +101,119 @@ export function makeHandler(root?: string, config?: Config): (
         writePlainTextError(response, err);
       }
     };
+    const scriptSrcAllowedHosts = [
+      'https://*.googlesyndication.com',
+      'https://www.googletagservices.com',
+      'https://www.google-analytics.com',
+      'www.googletagmanager.com',
+      'https://*.bkmexpress.com.tr',
+      'https://*.masterpassturkiye.com',
+      'https://challenges.cloudflare.com',
+      'app.vwo.com',
+      '*.visualwebsiteoptimizer.com',
+      'https://*.segmentify.com',
+      'https://cdn.sgmntfy.com',
+      'https://js.go2sdk.com',
+      'https://cdn.adjust.com',
+      'https://live.maytap.me',
+      'https://creativecdn.com',
+      'https://*.cloudfront.net',
+      'https://js.go2sdk.com',
+      'https://tags.bkrtx.com',
+      'https://static.criteo.net',
+      'https://connect.facebook.net',
+      'https://cdn.yapaytech.com',
+      'https://*.criteo.com',
+    ];
 
-    response.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval'; "
-        + "script-src * 'unsafe-inline' 'unsafe-eval'; "
-        + "connect-src * 'unsafe-inline'; "
-        + "font-src * data:; "
-        + "img-src * data: blob: 'unsafe-inline'; "
-        + "frame-src sanalmarket: yenism: https://*.youtube.com https://tr.rdrtr.com https://stags.bluekai.com https://*.creativecdn.com https://creativecdn.com https://*.criteo.com https://*.facebook.com https://*.doubleclick.net https://*.api.sociaplus.com https://*.webinstats.com https://sanalmarket.api.useinsider.com https://optimize.google.com https://*.bkmexpress.com.tr https://www.linkadoo.co https://linkadoo.co https://channelconnector.smartmessage-connect.com https://*.poltio.com https://*.googlesyndication.com https://console.googletagservices.com https://digiavantaj.cake.aclz.net https://documents.colendilabs.com https://challenges.cloudflare.com app.vwo.com *.visualwebsiteoptimizer.com ; "
-        + "style-src * 'unsafe-inline';"
-        + "worker-src 'self' blob:;");
+    const frameSrcAllowedHosts = [
+      "https://*.youtube.com",
+      "https://tr.rdrtr.com",
+      "https://stags.bluekai.com",
+      "https://*.criteo.com",
+      "https://*.doubleclick.net",
+      "https://*.api.sociaplus.com",
+      "https://*.webinstats.com",
+      "https://sanalmarket.api.useinsider.com",
+      "https://optimize.google.com",
+      "https://*.bkmexpress.com.tr",
+      "https://www.linkadoo.co",
+      "https://linkadoo.co",
+      "https://channelconnector.smartmessage-connect.com",
+      "https://*.poltio.com",
+      "https://*.googlesyndication.com",
+      "https://console.googletagservices.com",
+      "https://digiavantaj.cake.aclz.net",
+      "https://creativecdn.com",
+      "https://documents.colendilabs.com",
+      "https://challenges.cloudflare.com",
+      "app.vwo.com",
+      "*.visualwebsiteoptimizer.com",
+      "https://*.adjust.com",
+    ];
+
+    const styleSrcAllowedHosts = [
+      "https://*.googlesyndication.com",
+      "https://www.googletagservices.com",
+      "https://fonts.googleapis.com",
+      'https://cdn.segmentify.com',
+    ];
+
+    const imageSrcAllowedHosts = [
+        "www.google.com",
+        "www.google.com.tr",
+        "https://*.googlesyndication.com",
+        "matching.ivitrack.com",
+        "https://stags.bluekai.com",
+        "x.bidswitch.net",
+        "ib.adnxs.com", // criteo
+        "contextual.media.net",
+        "pixel.rubiconproject.com",
+        "rtb-csync.smartadserver.com",
+        "criteo-sync.teads.tv", // criteo
+        "eb2.3lift.com",
+        "visitor.omnitagjs.com", // criteo
+        "simage2.pubmatic.com",
+        "*.ads.yieldmo.com", // criteo
+        "*.doubleclick.net",
+        "*.taboola.com", // criteo
+        "cm.adform.net",
+        "*.casalemedia.com",
+        "id5-sync.com",
+        "ad.360yield.com",
+        "jadserve.postrelease.com",
+        "eb2.3lift.com",
+        "x.bidswitch.net",
+        "match.sharethrough.com", // criteo
+        "jadserve.postrelease.com", // criteo
+    ];
+
+    // json, html etc
+    const defaultFallbackAllowedHosts = [
+        "exchange.mediavine.com", // criteo
+        "e1.emxdgt.com",
+        "*.analytics.yahoo.com",
+        "sync.outbrain.com", // criteo
+        "trends.revcontent.com",
+        "match.sharethrough.com",
+        "criteo-partners.tremorhub.com",
+        "trends.revcontent.com", // criteo
+        "tazedirekt.webinstats.com",
+        "macro.webinstats.com",
+        "https://*.facebook.com",
+    ];
+
+    response.setHeader('Content-Security-Policy',
+        `default-src 'self' 'unsafe-inline' 'unsafe-eval' ${defaultFallbackAllowedHosts.join(' ')}; `
+        + `script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: ${scriptSrcAllowedHosts.join(' ')} ; `
+        + "connect-src 'self' ; "
+        + "font-src 'self' data: https://fonts.gstatic.com ; "
+        + `img-src data: blob: 'unsafe-inline' https://*.migrosone.com ${imageSrcAllowedHosts.join(' ')} ; `
+        + `frame-src ${frameSrcAllowedHosts.join(' ')} ; `
+        + `style-src 'self' 'unsafe-inline' ${styleSrcAllowedHosts.join(' ')} ;`
+        + "worker-src 'self' blob: ;"
+        + "object-src 'none' ;");
+
     response.setHeader('X-Frame-Options', 'SAMEORIGIN');
     response.setHeader('Strict-Transport-Security', 'max-age=0; includeSubDomains');
     response.setHeader('X-XSS-Protection', 1);
