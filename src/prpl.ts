@@ -12,17 +12,17 @@
  * http://polymer.github.io/PATENTS.txt
  */
 
-import * as capabilities from 'browser-capabilities';
-import * as express from 'express';
-import * as fs from 'fs';
-import * as http from 'http';
-import * as httpErrors from 'http-errors';
-import * as path from 'path';
-import * as send from 'send';
-import * as statuses from 'statuses';
-import * as url from 'url';
+import * as capabilities from "browser-capabilities";
+import * as express from "express";
+import * as fs from "fs";
+import * as http from "http";
+import * as httpErrors from "http-errors";
+import * as path from "path";
+import * as send from "send";
+import * as statuses from "statuses";
+import * as url from "url";
 
-import * as push from './push';
+import * as push from "./push";
 
 export interface Config {
   // The Cache-Control header to send for all requests except the entrypoint.
@@ -61,8 +61,8 @@ export interface Config {
   // https://github.com/Polymer/polymer-project-config/blob/master/src/index.ts
   entrypoint?: string;
   builds?: {
-    name?: string,
-    browserCapabilities?: capabilities.BrowserCapability[],
+    name?: string;
+    browserCapabilities?: capabilities.BrowserCapability[];
   }[];
   username?: string;
   password?: string;
@@ -77,20 +77,24 @@ const isServiceWorker = /service-worker.js$/;
 /**
  * Return a new HTTP handler to serve a PRPL-style application.
  */
-export function makeHandler(root?: string, config?: Config): (
-    request: http.IncomingMessage,
-    response: http.ServerResponse,
-    next?: express.NextFunction) => void {
-  const absRoot = path.resolve(root || '.');
+export function makeHandler(
+  root?: string,
+  config?: Config
+): (
+  request: http.IncomingMessage,
+  response: http.ServerResponse,
+  next?: express.NextFunction
+) => void {
+  const absRoot = path.resolve(root || ".");
   console.info(`Serving files from "${absRoot}".`);
 
   const builds = loadBuilds(absRoot, config);
 
-  const cacheControl = (config && config.cacheControl) || 'max-age=60';
+  const cacheControl = (config && config.cacheControl) || "max-age=60";
   const unregisterMissingServiceWorkers =
-      (config && config.unregisterMissingServiceWorkers != undefined) ?
-          config.unregisterMissingServiceWorkers :
-          true;
+    config && config.unregisterMissingServiceWorkers != undefined
+      ? config.unregisterMissingServiceWorkers
+      : true;
   const forwardErrors = config && config.forwardErrors;
 
   return async function prplHandler(request, response, next) {
@@ -102,20 +106,26 @@ export function makeHandler(root?: string, config?: Config): (
       }
     };
 
-    response.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval'; "
-        + "script-src * 'unsafe-inline' 'unsafe-eval'; "
-        + "connect-src * 'unsafe-inline'; "
-        + "font-src * data:; "
-        + "img-src * data: blob: 'unsafe-inline'; "
-        + "frame-src sanalmarket: yenism: https://*.youtube.com https://tr.rdrtr.com https://stags.bluekai.com https://*.creativecdn.com https://creativecdn.com https://*.criteo.com https://*.facebook.com https://*.doubleclick.net https://*.api.sociaplus.com https://*.webinstats.com https://sanalmarket.api.useinsider.com https://optimize.google.com https://*.bkmexpress.com.tr https://www.linkadoo.co https://linkadoo.co https://channelconnector.smartmessage-connect.com https://*.poltio.com https://*.googlesyndication.com https://console.googletagservices.com https://digiavantaj.cake.aclz.net https://documents.colendilabs.com https://challenges.cloudflare.com ; "
-        + "style-src * 'unsafe-inline';");
-    response.setHeader('X-Frame-Options', 'SAMEORIGIN');
-    response.setHeader('Strict-Transport-Security', 'max-age=0; includeSubDomains');
-    response.setHeader('X-XSS-Protection', 1);
-    response.setHeader('X-Content-Type-Options', 'nosniff');
+    response.setHeader(
+      "Content-Security-Policy",
+      "default-src * 'unsafe-inline' 'unsafe-eval'; " +
+        "script-src * 'unsafe-inline' 'unsafe-eval'; " +
+        "connect-src * 'unsafe-inline'; " +
+        "font-src * data:; " +
+        "img-src * data: blob: 'unsafe-inline'; " +
+        "frame-src sanalmarket: yenism: https://*.youtube.com https://tr.rdrtr.com https://stags.bluekai.com https://*.creativecdn.com https://creativecdn.com https://*.criteo.com https://*.facebook.com https://*.doubleclick.net https://*.api.sociaplus.com https://*.webinstats.com https://sanalmarket.api.useinsider.com https://*.bkmexpress.com.tr https://www.linkadoo.co https://linkadoo.co https://channelconnector.smartmessage-connect.com https://*.poltio.com https://*.googlesyndication.com https://console.googletagservices.com https://digiavantaj.cake.aclz.net https://documents.colendilabs.com https://challenges.cloudflare.com app.vwo.com *.visualwebsiteoptimizer.com ; " +
+        "style-src * 'unsafe-inline';" +
+        "worker-src 'self' blob:;"
+    );
+    response.setHeader("X-Frame-Options", "SAMEORIGIN");
+    response.setHeader(
+      "Strict-Transport-Security",
+      "max-age=0; includeSubDomains"
+    );
+    response.setHeader("X-XSS-Protection", 1);
+    response.setHeader("X-Content-Type-Options", "nosniff");
 
-
-    const urlPath = url.parse(request.url || '/').pathname || '/';
+    const urlPath = url.parse(request.url || "/").pathname || "/";
 
     // Let's be extra careful about directory traversal attacks, even though
     // the `send` library should already ensure we don't serve any file outside
@@ -126,7 +136,7 @@ export function makeHandler(root?: string, config?: Config): (
     // is a prefix of "/foo-secrets".
     const absFilepath = path.normalize(path.join(absRoot, urlPath));
     if (!absFilepath.startsWith(addTrailingPathSep(absRoot))) {
-      handleError(httpErrors(403, 'Forbidden'));
+      handleError(httpErrors(403, "Forbidden"));
       return;
     }
 
@@ -135,12 +145,14 @@ export function makeHandler(root?: string, config?: Config): (
     // case, paths with file extensions are always excluded because they are
     // likely to be not-found static resources rather than application
     // routes.
-    const serveEntrypoint = urlPath === '/' ||
-        (!hasFileExtension.test(urlPath) && !(await fileExists(absFilepath)));
+    const serveEntrypoint =
+      urlPath === "/" ||
+      (!hasFileExtension.test(urlPath) && !(await fileExists(absFilepath)));
 
     // Find the highest ranked build suitable for this user agent.
     const clientCapabilities = capabilities.browserCapabilities(
-        request.headers['user-agent'] as string);
+      request.headers["user-agent"] as string
+    );
     const build = builds.find((b) => b.canServe(clientCapabilities));
 
     // We warned about this at startup. You should probably provide a fallback
@@ -148,47 +160,50 @@ export function makeHandler(root?: string, config?: Config): (
     // that we only return this error for the entrypoint; we always serve fully
     // qualified static resources.
     if (!build && serveEntrypoint) {
-      handleError(httpErrors(500, 'This browser is not supported.'));
+      handleError(httpErrors(500, "This browser is not supported."));
       return;
     }
 
-    const fileToSend = (build && serveEntrypoint) ? build.entrypoint : urlPath;
+    const fileToSend = build && serveEntrypoint ? build.entrypoint : urlPath;
 
     if (isServiceWorker.test(fileToSend)) {
       // A service worker may only register with a scope above its own path if
       // permitted by this header.
       // https://www.w3.org/TR/service-workers-1/#service-worker-allowed
-      response.setHeader('Service-Worker-Allowed', '/');
+      response.setHeader("Service-Worker-Allowed", "/");
 
       // Don't cache SW (unless cache header is otherwise set).
-      if (!response.getHeader('Cache-Control')) {
-        response.setHeader('Cache-Control', 'max-age=0');
+      if (!response.getHeader("Cache-Control")) {
+        response.setHeader("Cache-Control", "max-age=0");
       }
 
       // Automatically unregister service workers that no longer exist to
       // prevent clients getting stuck with old service workers indefinitely.
       if (unregisterMissingServiceWorkers && !(await fileExists(absFilepath))) {
-        response.setHeader('Content-Type', 'application/javascript');
+        response.setHeader("Content-Type", "application/javascript");
         response.writeHead(200);
         response.end(
-            `self.addEventListener('install', () => self.skipWaiting());
-self.addEventListener('activate', () => self.registration.unregister());`);
+          `self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', () => self.registration.unregister());`
+        );
         return;
       }
     }
 
     // Don't set the Cache-Control header if it's already set. This way another
     // middleware can control caching, and we won't touch it.
-    if (!response.getHeader('Cache-Control')) {
+    if (!response.getHeader("Cache-Control")) {
       response.setHeader(
-          'Cache-Control', serveEntrypoint ? 'max-age=0' : cacheControl);
+        "Cache-Control",
+        serveEntrypoint ? "max-age=0" : cacheControl
+      );
     }
 
     if (build && build.pushManifest) {
       // Set nopush attribute if the client doesn't support push. This will
       // still set preload headers, but it provides a signal to the server to
       // not use server push.
-      const nopush = !clientCapabilities.has('push');
+      const nopush = !clientCapabilities.has("push");
       const linkHeaders = build.pushManifest.linkHeaders(urlPath, nopush);
       if (urlPath !== fileToSend) {
         // Also check the filename against the push manifest. In the case of
@@ -197,7 +212,7 @@ self.addEventListener('activate', () => self.registration.unregister());`);
         // terms of both.
         linkHeaders.push(...build.pushManifest.linkHeaders(fileToSend, nopush));
       }
-      response.setHeader('Link', linkHeaders);
+      response.setHeader("Link", linkHeaders);
     }
 
     const sendOpts = {
@@ -206,15 +221,14 @@ self.addEventListener('activate', () => self.registration.unregister());`);
       cacheControl: false,
     };
     send(request, fileToSend, sendOpts)
-        .on('error',
-            (err: httpErrors.HttpError) => {
-              // `send` puts a lot of detail in the error message, like the
-              // absolute system path of the missing file for a 404. We don't
-              // want that to leak out, so let's use a generic message instead.
-              err.message = statuses.message[err.status] || String(err.status);
-              handleError(err);
-            })
-        .pipe(response);
+      .on("error", (err: httpErrors.HttpError) => {
+        // `send` puts a lot of detail in the error message, like the
+        // absolute system path of the missing file for a 404. We don't
+        // want that to leak out, so let's use a generic message instead.
+        err.message = statuses.message[err.status] || String(err.status);
+        handleError(err);
+      })
+      .pipe(response);
   };
 }
 
@@ -229,9 +243,11 @@ function fileExists(filepath: string): Promise<boolean> {
  * Write a plain text HTTP error response.
  */
 function writePlainTextError(
-    response: http.ServerResponse, error: httpErrors.HttpError) {
+  response: http.ServerResponse,
+  error: httpErrors.HttpError
+) {
   response.statusCode = error.status;
-  response.setHeader('Content-Type', 'text/plain');
+  response.setHeader("Content-Type", "text/plain");
   response.end(error.message);
 }
 
@@ -243,21 +259,24 @@ class Build {
   public pushManifest?: push.PushManifest;
 
   constructor(
-      private configOrder: number,
-      public requirements: Set<capabilities.BrowserCapability>,
-      public entrypoint: string,
-      buildDir: string,
-      serverRoot: string) {
+    private configOrder: number,
+    public requirements: Set<capabilities.BrowserCapability>,
+    public entrypoint: string,
+    buildDir: string,
+    serverRoot: string
+  ) {
     // TODO Push manifest location should be configurable.
-    const pushManifestPath = path.join(buildDir, 'push-manifest.json');
+    const pushManifestPath = path.join(buildDir, "push-manifest.json");
     const relPath = path.relative(serverRoot, pushManifestPath);
     if (fs.existsSync(pushManifestPath)) {
       console.info(`Detected push manifest "${relPath}".`);
       // Note this constructor throws if invalid.
       this.pushManifest = new push.PushManifest(
-          JSON.parse(fs.readFileSync(pushManifestPath, 'utf8')) as
-              push.PushManifestData,
-          path.relative(serverRoot, buildDir));
+        JSON.parse(
+          fs.readFileSync(pushManifestPath, "utf8")
+        ) as push.PushManifestData,
+        path.relative(serverRoot, buildDir)
+      );
     }
   }
 
@@ -289,14 +308,13 @@ class Build {
 
 function loadBuilds(root: string, config: Config | undefined): Build[] {
   const builds: Build[] = [];
-  const entrypoint = (config ? config.entrypoint : null) || 'index.html';
+  const entrypoint = (config ? config.entrypoint : null) || "index.html";
 
   if (!config || !config.builds || !config.builds.length) {
     // No builds were specified. Try to serve an entrypoint from the root
     // directory, with no capability requirements.
     console.warn(`WARNING: No builds configured.`);
     builds.push(new Build(0, new Set(), entrypoint, root, root));
-
   } else {
     for (let i = 0; i < config.builds.length; i++) {
       const build = config.builds[i];
@@ -304,12 +322,15 @@ function loadBuilds(root: string, config: Config | undefined): Build[] {
         console.warn(`WARNING: Build at offset ${i} has no name; skipping.`);
         continue;
       }
-      builds.push(new Build(
+      builds.push(
+        new Build(
           i,
           new Set(build.browserCapabilities),
           path.posix.join(build.name, entrypoint),
           path.join(root, build.name),
-          root));
+          root
+        )
+      );
     }
   }
 
@@ -321,8 +342,9 @@ function loadBuilds(root: string, config: Config | undefined): Build[] {
   for (const build of builds) {
     const requirements = Array.from(build.requirements.values());
     console.info(
-        `Registered entrypoint "${build.entrypoint}" with capabilities ` +
-        `[${requirements.join(',')}].`);
+      `Registered entrypoint "${build.entrypoint}" with capabilities ` +
+        `[${requirements.join(",")}].`
+    );
     // Note `build.entrypoint` is relative to the server root, but that's not
     // neccessarily our cwd.
     // TODO Refactor to make filepath vs URL path and relative vs absolute
@@ -333,8 +355,9 @@ function loadBuilds(root: string, config: Config | undefined): Build[] {
   }
   if (!builds.find((b) => b.requirements.size === 0)) {
     console.warn(
-        'WARNING: All builds have a capability requirement. ' +
-        'Some browsers will display an error. Consider a fallback build.');
+      "WARNING: All builds have a capability requirement. " +
+        "Some browsers will display an error. Consider a fallback build."
+    );
   }
 
   return builds;
