@@ -108,12 +108,13 @@ suite('prpl server', function () {
         const {headers} = await get('/');
         assert(headers['content-security-policy'], "default-src * 'unsafe-inline' 'unsafe-eval'; "
             + "script-src * 'unsafe-inline' 'unsafe-eval'; "
-            + "connect-src * 'unsafe-inline'; "
+            + "script-src-elem 'self' 'unsafe-inline' *.visualwebsiteoptimizer.com app.vwo.com;"
+            + "connect-src * 'unsafe-inline';"
             + "font-src * data:; "
             + "img-src * data: blob: 'unsafe-inline'; "
-            + "frame-src sanalmarket: yenism: http://*.youtube.com https://tr.rdrtr.com https://stags.bluekai.com https://*.creativecdn.com https://creativecdn.com https://*.criteo.com https://*.facebook.com https://*.doubleclick.net https://*.api.sociaplus.com https://*.webinstats.com https://sanalmarket.api.useinsider.com https://optimize.google.com https://*.bkmexpress.com.tr https://www.linkadoo.co https://linkadoo.co https://channelconnector.smartmessage-connect.com https://*.poltio.com https://*.googlesyndication.com https://console.googletagservices.com https://digiavantaj.cake.aclz.net https://challenges.cloudflare.com app.vwo.com *.visualwebsiteoptimizer.com ; "
+            + "frame-src sanalmarket: yenism: http://*.youtube.com https://tr.rdrtr.com https://stags.bluekai.com https://*.creativecdn.com https://creativecdn.com https://*.criteo.com https://*.facebook.com https://*.doubleclick.net https://*.api.sociaplus.com https://*.webinstats.com https://sanalmarket.api.useinsider.com https://*.bkmexpress.com.tr https://www.linkadoo.co https://linkadoo.co https://channelconnector.smartmessage-connect.com https://*.poltio.com https://*.googlesyndication.com https://console.googletagservices.com https://digiavantaj.cake.aclz.net https://challenges.cloudflare.com app.vwo.com *.visualwebsiteoptimizer.com ; "
             + "style-src * 'unsafe-inline';"
-            +  "worker-src 'self' blob:;");
+            + "worker-src 'self' blob:;");
         assert(headers["x-frame-options"], "SAMEORIGIN");
         assert(headers["strict-transport-security"], "max-age=0; includeSubDomains");
         assert(headers["x-xss-protection"], '1');

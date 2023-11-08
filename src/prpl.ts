@@ -104,6 +104,7 @@ export function makeHandler(root?: string, config?: Config): (
 
     response.setHeader('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval'; "
         + "script-src * 'unsafe-inline' 'unsafe-eval'; "
+        + "script-src-elem 'self' 'unsafe-inline' *.visualwebsiteoptimizer.com app.vwo.com;"
         + "connect-src * 'unsafe-inline'; "
         + "font-src * data:; "
         + "img-src * data: blob: 'unsafe-inline'; "
