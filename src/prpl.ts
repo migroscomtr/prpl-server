@@ -128,7 +128,8 @@ export function makeHandler(root?: string, config?: Config): (
         "affiliate.migros.com.tr",
         "tags.bluekai.com",
         "*.mncdn.com",
-        "*.adform.net"
+        "*.adform.net",
+        "*.storyly.io"
     ];
 
     const frameSrcAllowedHosts = [
@@ -207,6 +208,7 @@ export function makeHandler(root?: string, config?: Config): (
 
     // json, html etc
     const defaultFallbackAllowedHosts = [
+        "*.migros.com.tr",
         "exchange.mediavine.com", // criteo
         "e1.emxdgt.com",
         "*.analytics.yahoo.com",
