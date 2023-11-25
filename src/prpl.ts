@@ -208,6 +208,7 @@ export function makeHandler(root?: string, config?: Config): (
         "magaza-iphone.migros.com.tr",
         "*.demdex.net",
         "*.krxd.net",
+        "*.cloudfront.net"
     ];
 
     // json, html etc
