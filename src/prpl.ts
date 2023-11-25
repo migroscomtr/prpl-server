@@ -102,28 +102,33 @@ export function makeHandler(root?: string, config?: Config): (
       }
     };
     const scriptSrcAllowedHosts = [
-      'https://*.googlesyndication.com',
-      'https://www.googletagservices.com',
-      'https://www.google-analytics.com',
-      'www.googletagmanager.com',
-      'https://*.bkmexpress.com.tr',
-      'https://*.masterpassturkiye.com',
-      'https://challenges.cloudflare.com',
-      'app.vwo.com',
-      '*.visualwebsiteoptimizer.com',
-      'https://*.segmentify.com',
-      'https://cdn.sgmntfy.com',
-      'https://js.go2sdk.com',
-      'https://cdn.adjust.com',
-      'https://live.maytap.me',
-      'https://creativecdn.com',
-      'https://*.cloudfront.net',
-      'https://js.go2sdk.com',
-      'https://tags.bkrtx.com',
-      'https://static.criteo.net',
-      'https://connect.facebook.net',
-      'https://cdn.yapaytech.com',
-      'https://*.criteo.com',
+        "https://*.googlesyndication.com",
+        "https://www.googletagservices.com",
+        "https://www.google-analytics.com",
+        "www.googletagmanager.com",
+        "https://*.bkmexpress.com.tr",
+        "https://*.masterpassturkiye.com",
+        "https://challenges.cloudflare.com",
+        "app.vwo.com",
+        "*.visualwebsiteoptimizer.com",
+        "https://*.segmentify.com",
+        "https://cdn.sgmntfy.com",
+        "https://js.go2sdk.com",
+        "https://cdn.adjust.com",
+        "https://live.maytap.me",
+        "https://creativecdn.com",
+        "https://*.cloudfront.net",
+        "https://js.go2sdk.com",
+        "https://tags.bkrtx.com",
+        "https://static.criteo.net",
+        "https://connect.facebook.net",
+        "https://cdn.yapaytech.com",
+        "https://*.criteo.com",
+        "*.doubleclick.net",
+        "affiliate.migros.com.tr",
+        "tags.bluekai.com",
+        "*.mncdn.com",
+        "*.adform.net"
     ];
 
     const frameSrcAllowedHosts = [
@@ -153,15 +158,19 @@ export function makeHandler(root?: string, config?: Config): (
     ];
 
     const styleSrcAllowedHosts = [
-      "https://*.googlesyndication.com",
-      "https://www.googletagservices.com",
-      "https://fonts.googleapis.com",
-      'https://cdn.segmentify.com',
+      "*.googlesyndication.com",
+      "www.googletagservices.com",
+      "fonts.googleapis.com",
+      "cdn.segmentify.com",
+      "*.visualwebsiteoptimizer.com",
     ];
 
     const imageSrcAllowedHosts = [
         "www.google.com",
         "www.google.com.tr",
+        "*.visualwebsiteoptimizer.com",
+        "*.facebook.com",
+        "https://www.google-analytics.com",
         "https://*.googlesyndication.com",
         "matching.ivitrack.com",
         "https://stags.bluekai.com",
@@ -171,6 +180,7 @@ export function makeHandler(root?: string, config?: Config): (
         "pixel.rubiconproject.com",
         "rtb-csync.smartadserver.com",
         "criteo-sync.teads.tv", // criteo
+        "*.criteo.com", // criteo
         "eb2.3lift.com",
         "visitor.omnitagjs.com", // criteo
         "simage2.pubmatic.com",
@@ -186,6 +196,13 @@ export function makeHandler(root?: string, config?: Config): (
         "x.bidswitch.net",
         "match.sharethrough.com", // criteo
         "jadserve.postrelease.com", // criteo
+        "*.emxdgt.com",
+        "ups.analytics.yahoo.com",
+        "exchange.mediavine.com",
+        "sync.outbrain.com",
+        "trends.revcontent.com",
+        "criteo-partners.tremorhub.com", // criteo
+        "ad.yieldlab.net",
     ];
 
     // json, html etc
@@ -203,14 +220,28 @@ export function makeHandler(root?: string, config?: Config): (
         "https://*.facebook.com",
     ];
 
+    const connectSrcAllowedHosts = [
+        "www.google-analytics.com",
+        "analytics.google.com",
+        "*.googlesyndication.com",
+        "*.visualwebsiteoptimizer.com",
+        "*.segmentify.com",
+        "*.criteo.com",
+        "*.adjust.com",
+        "app.adjust.net.in",
+        "app.adjust.world",
+
+    ];
+
     response.setHeader('Content-Security-Policy',
         `default-src 'self' 'unsafe-inline' 'unsafe-eval' ${defaultFallbackAllowedHosts.join(' ')}; `
         + `script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: ${scriptSrcAllowedHosts.join(' ')} ; `
-        + "connect-src 'self' ; "
+        + `connect-src 'self' ${connectSrcAllowedHosts.join(' ')} ; `
         + "font-src 'self' data: https://fonts.gstatic.com ; "
-        + `img-src data: blob: 'unsafe-inline' https://*.migrosone.com ${imageSrcAllowedHosts.join(' ')} ; `
+        + `img-src data: blob: 'self' 'unsafe-inline' https://*.migrosone.com ${imageSrcAllowedHosts.join(' ')} ; `
         + `frame-src ${frameSrcAllowedHosts.join(' ')} ; `
         + `style-src 'self' 'unsafe-inline' ${styleSrcAllowedHosts.join(' ')} ;`
+        + `manifest-src 'self' ; `
         + "worker-src 'self' blob: ;"
         + "object-src 'none' ;");
 
