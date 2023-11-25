@@ -225,6 +225,8 @@ export function makeHandler(root?: string, config?: Config): (
         "analytics.google.com",
         "*.googlesyndication.com",
         "*.visualwebsiteoptimizer.com",
+        "*.masterpassturkiye.com",
+        "*.browser-intake-datadoghq.eu",
         "*.segmentify.com",
         "*.criteo.com",
         "*.adjust.com",
