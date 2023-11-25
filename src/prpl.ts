@@ -157,6 +157,7 @@ export function makeHandler(root?: string, config?: Config): (
       "app.vwo.com",
       "*.visualwebsiteoptimizer.com",
       "https://*.adjust.com",
+      "maps.googleapis.com"
     ];
 
     const styleSrcAllowedHosts = [
@@ -165,11 +166,13 @@ export function makeHandler(root?: string, config?: Config): (
       "fonts.googleapis.com",
       "cdn.segmentify.com",
       "*.visualwebsiteoptimizer.com",
+      "maps.googleapis.com"
     ];
 
     const imageSrcAllowedHosts = [
         "www.google.com",
         "www.google.com.tr",
+        "maps.googleapis.com",
         "*.visualwebsiteoptimizer.com",
         "*.facebook.com",
         "www.google-analytics.com",
@@ -226,6 +229,7 @@ export function makeHandler(root?: string, config?: Config): (
         "tazedirekt.webinstats.com",
         "macro.webinstats.com",
         "https://*.facebook.com",
+        "maps.googleapis.com"
     ];
 
     const connectSrcAllowedHosts = [
@@ -243,6 +247,7 @@ export function makeHandler(root?: string, config?: Config): (
         "app.adjust.world",
         "*.storyly.io",
         "*.doubleclick.net",
+        "maps.googleapis.com",
     ];
 
     response.setHeader('Content-Security-Policy',
