@@ -106,6 +106,7 @@ export function makeHandler(root?: string, config?: Config): (
         "https://www.googletagservices.com",
         "https://www.google-analytics.com",
         "www.googletagmanager.com",
+        "maps.googleapis.com",
         "https://*.bkmexpress.com.tr",
         "https://*.masterpassturkiye.com",
         "https://challenges.cloudflare.com",
