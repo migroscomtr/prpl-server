@@ -129,7 +129,7 @@ export function makeHandler(root?: string, config?: Config): (
         "tags.bluekai.com",
         "*.mncdn.com",
         "*.adform.net",
-        "*.storyly.io"
+        "*.storyly.io",
     ];
 
     const frameSrcAllowedHosts = [
@@ -171,10 +171,10 @@ export function makeHandler(root?: string, config?: Config): (
         "www.google.com.tr",
         "*.visualwebsiteoptimizer.com",
         "*.facebook.com",
-        "https://www.google-analytics.com",
-        "https://*.googlesyndication.com",
+        "www.google-analytics.com",
+        "*.googlesyndication.com",
         "matching.ivitrack.com",
-        "https://stags.bluekai.com",
+        "stags.bluekai.com",
         "x.bidswitch.net",
         "ib.adnxs.com", // criteo
         "contextual.media.net",
@@ -204,6 +204,10 @@ export function makeHandler(root?: string, config?: Config): (
         "trends.revcontent.com",
         "criteo-partners.tremorhub.com", // criteo
         "ad.yieldlab.net",
+        "*.migros.com.tr",
+        "magaza-iphone.migros.com.tr",
+        "*.demdex.net",
+        "*.krxd.net",
     ];
 
     // json, html etc
@@ -226,15 +230,17 @@ export function makeHandler(root?: string, config?: Config): (
         "www.google-analytics.com",
         "analytics.google.com",
         "*.googlesyndication.com",
+        "fonts.googleapis.com",
         "*.visualwebsiteoptimizer.com",
         "*.masterpassturkiye.com",
-        "*.browser-intake-datadoghq.eu",
+        "logs.browser-intake-datadoghq.eu",
         "*.segmentify.com",
         "*.criteo.com",
         "*.adjust.com",
         "app.adjust.net.in",
         "app.adjust.world",
-
+        "*.storyly.io",
+        "*.doubleclick.net",
     ];
 
     response.setHeader('Content-Security-Policy',
