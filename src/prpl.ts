@@ -131,6 +131,7 @@ export function makeHandler(root?: string, config?: Config): (
         "*.mncdn.com",
         "*.adform.net",
         "*.storyly.io",
+        "cdn.jsdelivr.net"
     ];
 
     const frameSrcAllowedHosts = [
@@ -178,6 +179,7 @@ export function makeHandler(root?: string, config?: Config): (
         "*.facebook.com",
         "www.google-analytics.com",
         "*.googlesyndication.com",
+        "img.youtube.com",
         "matching.ivitrack.com",
         "stags.bluekai.com",
         "x.bidswitch.net",
@@ -230,7 +232,7 @@ export function makeHandler(root?: string, config?: Config): (
         "trends.revcontent.com", // criteo
         "tazedirekt.webinstats.com",
         "macro.webinstats.com",
-        "https://*.facebook.com",
+        "*.facebook.com",
         "maps.googleapis.com"
     ];
 
