@@ -173,6 +173,7 @@ export function makeHandler(root?: string, config?: Config): (
         "www.google.com",
         "www.google.com.tr",
         "maps.googleapis.com",
+        "maps.gstatic.com",
         "*.visualwebsiteoptimizer.com",
         "*.facebook.com",
         "www.google-analytics.com",
