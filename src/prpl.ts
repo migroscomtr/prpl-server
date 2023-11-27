@@ -125,6 +125,7 @@ export function makeHandler(root?: string, config?: Config): (
         "https://static.criteo.net",
         "https://connect.facebook.net",
         "https://cdn.yapaytech.com",
+        "https://cdnjs.cloudflare.com",
         "https://*.criteo.com",
         "*.doubleclick.net",
         "affiliate.migros.com.tr",
