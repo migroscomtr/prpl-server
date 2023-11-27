@@ -106,7 +106,8 @@ export function makeHandler(root?: string, config?: Config): (
         "https://www.googletagservices.com",
         "https://www.google-analytics.com",
         "www.googletagmanager.com",
-        "maps.googleapis.com",
+        "*.googleapis.com",
+        "*.googleadservices.com",
         "https://*.bkmexpress.com.tr",
         "https://*.masterpassturkiye.com",
         "https://challenges.cloudflare.com",
@@ -139,6 +140,7 @@ export function makeHandler(root?: string, config?: Config): (
       "https://tr.rdrtr.com",
       "https://stags.bluekai.com",
       "https://*.criteo.com",
+      "https://*.criteo.net",
       "https://*.doubleclick.net",
       "https://*.api.sociaplus.com",
       "https://*.webinstats.com",
@@ -175,6 +177,7 @@ export function makeHandler(root?: string, config?: Config): (
         "www.google.com.tr",
         "maps.googleapis.com",
         "*.gstatic.com",
+        "*.googleadservices.com",
         "*.visualwebsiteoptimizer.com",
         "*.facebook.com",
         "www.google-analytics.com",
@@ -216,7 +219,8 @@ export function makeHandler(root?: string, config?: Config): (
         "*.demdex.net",
         "*.krxd.net",
         "*.cloudfront.net",
-        "*.thebrighttag.com"
+        "*.thebrighttag.com",
+        "*.semasio.net",
     ];
 
     // json, html etc
@@ -240,6 +244,9 @@ export function makeHandler(root?: string, config?: Config): (
         "www.google-analytics.com",
         "analytics.google.com",
         "*.googlesyndication.com",
+        "*.googleadservices.com",
+        "macro.webinstats.com",
+        "tazedirekt.webinstats.com",
         "fonts.googleapis.com",
         "*.gstatic.com",
         "*.visualwebsiteoptimizer.com",
