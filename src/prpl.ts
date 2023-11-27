@@ -157,10 +157,12 @@ export function makeHandler(root?: string, config?: Config): (
       "https://creativecdn.com",
       "https://documents.colendilabs.com",
       "https://challenges.cloudflare.com",
+      "https://cdnjs.cloudflare.com",
       "app.vwo.com",
       "*.visualwebsiteoptimizer.com",
       "https://*.adjust.com",
-      "maps.googleapis.com"
+      "maps.googleapis.com",
+      "*.adform.net",
     ];
 
     const styleSrcAllowedHosts = [
@@ -221,6 +223,7 @@ export function makeHandler(root?: string, config?: Config): (
         "*.cloudfront.net",
         "*.thebrighttag.com",
         "*.semasio.net",
+        "*.dmxleo.com",
     ];
 
     // json, html etc
@@ -260,6 +263,8 @@ export function makeHandler(root?: string, config?: Config): (
         "*.storyly.io",
         "*.doubleclick.net",
         "maps.googleapis.com",
+        "*.dahi.ai",
+        "*.adrttt.com",
     ];
 
     response.setHeader('Content-Security-Policy',
