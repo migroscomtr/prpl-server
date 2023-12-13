@@ -133,7 +133,8 @@ export function makeHandler(root?: string, config?: Config): (
         "*.mncdn.com",
         "*.adform.net",
         "*.storyly.io",
-        "cdn.jsdelivr.net"
+        "cdn.jsdelivr.net",
+        "https://digiavantaj.cake.aclz.net"
     ];
 
     const frameSrcAllowedHosts = [
@@ -164,6 +165,7 @@ export function makeHandler(root?: string, config?: Config): (
       "https://*.adjust.com",
       "maps.googleapis.com",
       "*.adform.net",
+      "https://wallet.moneypay.com.tr",
     ];
 
     const styleSrcAllowedHosts = [
