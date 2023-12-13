@@ -78,9 +78,9 @@ const isServiceWorker = /service-worker.js$/;
  * Return a new HTTP handler to serve a PRPL-style application.
  */
 export function makeHandler(root?: string, config?: Config): (
-    request: http.IncomingMessage,
-    response: http.ServerResponse,
-    next?: express.NextFunction) => void {
+  request: http.IncomingMessage,
+  response: http.ServerResponse,
+  next?: express.NextFunction) => void {
   const absRoot = path.resolve(root || '.');
   console.info(`Serving files from "${absRoot}".`);
 
@@ -88,9 +88,9 @@ export function makeHandler(root?: string, config?: Config): (
 
   const cacheControl = (config && config.cacheControl) || 'max-age=60';
   const unregisterMissingServiceWorkers =
-      (config && config.unregisterMissingServiceWorkers != undefined) ?
-          config.unregisterMissingServiceWorkers :
-          true;
+    (config && config.unregisterMissingServiceWorkers != undefined) ?
+      config.unregisterMissingServiceWorkers :
+      true;
   const forwardErrors = config && config.forwardErrors;
 
   return async function prplHandler(request, response, next) {
@@ -102,38 +102,39 @@ export function makeHandler(root?: string, config?: Config): (
       }
     };
     const scriptSrcAllowedHosts = [
-        "https://*.googlesyndication.com",
-        "https://www.googletagservices.com",
-        "https://www.google-analytics.com",
-        "www.googletagmanager.com",
-        "*.googleapis.com",
-        "*.googleadservices.com",
-        "https://*.bkmexpress.com.tr",
-        "https://*.masterpassturkiye.com",
-        "https://challenges.cloudflare.com",
-        "app.vwo.com",
-        "*.visualwebsiteoptimizer.com",
-        "https://*.segmentify.com",
-        "https://cdn.sgmntfy.com",
-        "https://js.go2sdk.com",
-        "https://cdn.adjust.com",
-        "https://live.maytap.me",
-        "https://creativecdn.com",
-        "https://*.cloudfront.net",
-        "https://js.go2sdk.com",
-        "https://tags.bkrtx.com",
-        "https://static.criteo.net",
-        "https://connect.facebook.net",
-        "https://cdn.yapaytech.com",
-        "https://cdnjs.cloudflare.com",
-        "https://*.criteo.com",
-        "*.doubleclick.net",
-        "affiliate.migros.com.tr",
-        "tags.bluekai.com",
-        "*.mncdn.com",
-        "*.adform.net",
-        "*.storyly.io",
-        "cdn.jsdelivr.net"
+      "https://*.googlesyndication.com",
+      "https://www.googletagservices.com",
+      "https://www.google-analytics.com",
+      "www.googletagmanager.com",
+      "*.googleapis.com",
+      "*.googleadservices.com",
+      "https://*.bkmexpress.com.tr",
+      "https://*.masterpassturkiye.com",
+      "https://challenges.cloudflare.com",
+      "app.vwo.com",
+      "*.visualwebsiteoptimizer.com",
+      "https://*.segmentify.com",
+      "https://cdn.sgmntfy.com",
+      "https://js.go2sdk.com",
+      "https://cdn.adjust.com",
+      "https://live.maytap.me",
+      "https://creativecdn.com",
+      "https://*.cloudfront.net",
+      "https://js.go2sdk.com",
+      "https://tags.bkrtx.com",
+      "https://static.criteo.net",
+      "https://connect.facebook.net",
+      "https://cdn.yapaytech.com",
+      "https://cdnjs.cloudflare.com",
+      "https://*.criteo.com",
+      "*.doubleclick.net",
+      "affiliate.migros.com.tr",
+      "tags.bluekai.com",
+      "*.mncdn.com",
+      "*.adform.net",
+      "*.storyly.io",
+      "cdn.jsdelivr.net",
+      "https://digiavantaj.cake.aclz.net"
     ];
 
     const frameSrcAllowedHosts = [
@@ -164,6 +165,7 @@ export function makeHandler(root?: string, config?: Config): (
       "https://*.adjust.com",
       "maps.googleapis.com",
       "*.adform.net",
+      "https://wallet.moneypay.com.tr",
     ];
 
     const styleSrcAllowedHosts = [
@@ -176,109 +178,109 @@ export function makeHandler(root?: string, config?: Config): (
     ];
 
     const imageSrcAllowedHosts = [
-        "www.google.com",
-        "www.google.com.tr",
-        "maps.googleapis.com",
-        "*.gstatic.com",
-        "*.googleadservices.com",
-        "*.visualwebsiteoptimizer.com",
-        "*.facebook.com",
-        "www.google-analytics.com",
-        "*.googlesyndication.com",
-        "img.youtube.com",
-        "matching.ivitrack.com",
-        "stags.bluekai.com",
-        "x.bidswitch.net",
-        "ib.adnxs.com", // criteo
-        "contextual.media.net",
-        "pixel.rubiconproject.com",
-        "rtb-csync.smartadserver.com",
-        "criteo-sync.teads.tv", // criteo
-        "*.criteo.com", // criteo
-        "eb2.3lift.com",
-        "visitor.omnitagjs.com", // criteo
-        "simage2.pubmatic.com",
-        "*.ads.yieldmo.com", // criteo
-        "*.doubleclick.net",
-        "*.taboola.com", // criteo
-        "cm.adform.net",
-        "*.casalemedia.com",
-        "id5-sync.com",
-        "ad.360yield.com",
-        "jadserve.postrelease.com",
-        "eb2.3lift.com",
-        "x.bidswitch.net",
-        "match.sharethrough.com", // criteo
-        "jadserve.postrelease.com", // criteo
-        "*.emxdgt.com",
-        "ups.analytics.yahoo.com",
-        "exchange.mediavine.com",
-        "sync.outbrain.com",
-        "trends.revcontent.com",
-        "criteo-partners.tremorhub.com", // criteo
-        "ad.yieldlab.net",
-        "*.migros.com.tr",
-        "magaza-iphone.migros.com.tr",
-        "*.demdex.net",
-        "*.krxd.net",
-        "*.cloudfront.net",
-        "*.thebrighttag.com",
-        "*.semasio.net",
-        "*.dmxleo.com",
+      "www.google.com",
+      "www.google.com.tr",
+      "maps.googleapis.com",
+      "*.gstatic.com",
+      "*.googleadservices.com",
+      "*.visualwebsiteoptimizer.com",
+      "*.facebook.com",
+      "www.google-analytics.com",
+      "*.googlesyndication.com",
+      "img.youtube.com",
+      "matching.ivitrack.com",
+      "stags.bluekai.com",
+      "x.bidswitch.net",
+      "ib.adnxs.com", // criteo
+      "contextual.media.net",
+      "pixel.rubiconproject.com",
+      "rtb-csync.smartadserver.com",
+      "criteo-sync.teads.tv", // criteo
+      "*.criteo.com", // criteo
+      "eb2.3lift.com",
+      "visitor.omnitagjs.com", // criteo
+      "simage2.pubmatic.com",
+      "*.ads.yieldmo.com", // criteo
+      "*.doubleclick.net",
+      "*.taboola.com", // criteo
+      "cm.adform.net",
+      "*.casalemedia.com",
+      "id5-sync.com",
+      "ad.360yield.com",
+      "jadserve.postrelease.com",
+      "eb2.3lift.com",
+      "x.bidswitch.net",
+      "match.sharethrough.com", // criteo
+      "jadserve.postrelease.com", // criteo
+      "*.emxdgt.com",
+      "ups.analytics.yahoo.com",
+      "exchange.mediavine.com",
+      "sync.outbrain.com",
+      "trends.revcontent.com",
+      "criteo-partners.tremorhub.com", // criteo
+      "ad.yieldlab.net",
+      "*.migros.com.tr",
+      "magaza-iphone.migros.com.tr",
+      "*.demdex.net",
+      "*.krxd.net",
+      "*.cloudfront.net",
+      "*.thebrighttag.com",
+      "*.semasio.net",
+      "*.dmxleo.com",
     ];
 
     // json, html etc
     const defaultFallbackAllowedHosts = [
-        "*.migros.com.tr",
-        "exchange.mediavine.com", // criteo
-        "e1.emxdgt.com",
-        "*.analytics.yahoo.com",
-        "sync.outbrain.com", // criteo
-        "trends.revcontent.com",
-        "match.sharethrough.com",
-        "criteo-partners.tremorhub.com",
-        "trends.revcontent.com", // criteo
-        "tazedirekt.webinstats.com",
-        "macro.webinstats.com",
-        "*.facebook.com",
-        "maps.googleapis.com"
+      "*.migros.com.tr",
+      "exchange.mediavine.com", // criteo
+      "e1.emxdgt.com",
+      "*.analytics.yahoo.com",
+      "sync.outbrain.com", // criteo
+      "trends.revcontent.com",
+      "match.sharethrough.com",
+      "criteo-partners.tremorhub.com",
+      "trends.revcontent.com", // criteo
+      "tazedirekt.webinstats.com",
+      "macro.webinstats.com",
+      "*.facebook.com",
+      "maps.googleapis.com"
     ];
 
     const connectSrcAllowedHosts = [
-        "www.google-analytics.com",
-        "analytics.google.com",
-        "*.googlesyndication.com",
-        "*.googleadservices.com",
-        "macro.webinstats.com",
-        "tazedirekt.webinstats.com",
-        "fonts.googleapis.com",
-        "*.gstatic.com",
-        "*.visualwebsiteoptimizer.com",
-        "*.masterpassturkiye.com",
-        "logs.browser-intake-datadoghq.eu",
-        "*.segmentify.com",
-        "*.criteo.com",
-        "*.adjust.com",
-        "app.adjust.net.in",
-        "app.adjust.world",
-        "*.storyly.io",
-        "*.doubleclick.net",
-        "maps.googleapis.com",
-        "*.dahi.ai",
-        "*.adrttt.com",
+      "www.google-analytics.com",
+      "analytics.google.com",
+      "*.googlesyndication.com",
+      "*.googleadservices.com",
+      "macro.webinstats.com",
+      "tazedirekt.webinstats.com",
+      "fonts.googleapis.com",
+      "*.gstatic.com",
+      "*.visualwebsiteoptimizer.com",
+      "*.masterpassturkiye.com",
+      "logs.browser-intake-datadoghq.eu",
+      "*.segmentify.com",
+      "*.criteo.com",
+      "*.adjust.com",
+      "app.adjust.net.in",
+      "app.adjust.world",
+      "*.storyly.io",
+      "*.doubleclick.net",
+      "maps.googleapis.com",
+      "*.dahi.ai",
+      "*.adrttt.com",
     ];
 
     response.setHeader('Content-Security-Policy',
-        `default-src 'self' 'unsafe-inline' 'unsafe-eval' ${defaultFallbackAllowedHosts.join(' ')}; `
-        + `script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: ${scriptSrcAllowedHosts.join(' ')} ; `
-        + `connect-src 'self' ${connectSrcAllowedHosts.join(' ')} ; `
-        + "font-src 'self' data: https://fonts.gstatic.com ; "
-        + `img-src data: blob: 'self' 'unsafe-inline' https://*.migrosone.com ${imageSrcAllowedHosts.join(' ')} ; `
-        + `frame-src ${frameSrcAllowedHosts.join(' ')} ; `
-        + `style-src 'self' 'unsafe-inline' ${styleSrcAllowedHosts.join(' ')} ;`
-        + `manifest-src 'self' ; `
-        + "worker-src 'self' blob: ;"
-        + "object-src 'none' ;");
+      `default-src 'self' 'unsafe-inline' 'unsafe-eval' ${defaultFallbackAllowedHosts.join(' ')}; `
+      + `script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: ${scriptSrcAllowedHosts.join(' ')} ; `
+      + `connect-src 'self' ${connectSrcAllowedHosts.join(' ')} ; `
+      + "font-src 'self' data: https://fonts.gstatic.com ; "
+      + `img-src data: blob: 'self' 'unsafe-inline' https://*.migrosone.com ${imageSrcAllowedHosts.join(' ')} ; `
+      + `frame-src ${frameSrcAllowedHosts.join(' ')} ; `
+      + `style-src 'self' 'unsafe-inline' ${styleSrcAllowedHosts.join(' ')} ;`
+      + `manifest-src 'self' ; `
+      + "worker-src 'self' blob: ;"
+      + "object-src 'none' ;");
 
     response.setHeader('X-Frame-Options', 'SAMEORIGIN');
     response.setHeader('Strict-Transport-Security', 'max-age=0; includeSubDomains');
@@ -307,11 +309,11 @@ export function makeHandler(root?: string, config?: Config): (
     // likely to be not-found static resources rather than application
     // routes.
     const serveEntrypoint = urlPath === '/' ||
-        (!hasFileExtension.test(urlPath) && !(await fileExists(absFilepath)));
+      (!hasFileExtension.test(urlPath) && !(await fileExists(absFilepath)));
 
     // Find the highest ranked build suitable for this user agent.
     const clientCapabilities = capabilities.browserCapabilities(
-        request.headers['user-agent'] as string);
+      request.headers['user-agent'] as string);
     const build = builds.find((b) => b.canServe(clientCapabilities));
 
     // We warned about this at startup. You should probably provide a fallback
@@ -342,7 +344,7 @@ export function makeHandler(root?: string, config?: Config): (
         response.setHeader('Content-Type', 'application/javascript');
         response.writeHead(200);
         response.end(
-            `self.addEventListener('install', () => self.skipWaiting());
+          `self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', () => self.registration.unregister());`);
         return;
       }
@@ -352,7 +354,7 @@ self.addEventListener('activate', () => self.registration.unregister());`);
     // middleware can control caching, and we won't touch it.
     if (!response.getHeader('Cache-Control')) {
       response.setHeader(
-          'Cache-Control', serveEntrypoint ? 'max-age=0' : cacheControl);
+        'Cache-Control', serveEntrypoint ? 'max-age=0' : cacheControl);
     }
 
     if (build && build.pushManifest) {
@@ -377,15 +379,15 @@ self.addEventListener('activate', () => self.registration.unregister());`);
       cacheControl: false,
     };
     send(request, fileToSend, sendOpts)
-        .on('error',
-            (err: httpErrors.HttpError) => {
-              // `send` puts a lot of detail in the error message, like the
-              // absolute system path of the missing file for a 404. We don't
-              // want that to leak out, so let's use a generic message instead.
-              err.message = statuses.message[err.status] || String(err.status);
-              handleError(err);
-            })
-        .pipe(response);
+      .on('error',
+        (err: httpErrors.HttpError) => {
+          // `send` puts a lot of detail in the error message, like the
+          // absolute system path of the missing file for a 404. We don't
+          // want that to leak out, so let's use a generic message instead.
+          err.message = statuses.message[err.status] || String(err.status);
+          handleError(err);
+        })
+      .pipe(response);
   };
 }
 
@@ -400,7 +402,7 @@ function fileExists(filepath: string): Promise<boolean> {
  * Write a plain text HTTP error response.
  */
 function writePlainTextError(
-    response: http.ServerResponse, error: httpErrors.HttpError) {
+  response: http.ServerResponse, error: httpErrors.HttpError) {
   response.statusCode = error.status;
   response.setHeader('Content-Type', 'text/plain');
   response.end(error.message);
@@ -414,11 +416,11 @@ class Build {
   public pushManifest?: push.PushManifest;
 
   constructor(
-      private configOrder: number,
-      public requirements: Set<capabilities.BrowserCapability>,
-      public entrypoint: string,
-      buildDir: string,
-      serverRoot: string) {
+    private configOrder: number,
+    public requirements: Set<capabilities.BrowserCapability>,
+    public entrypoint: string,
+    buildDir: string,
+    serverRoot: string) {
     // TODO Push manifest location should be configurable.
     const pushManifestPath = path.join(buildDir, 'push-manifest.json');
     const relPath = path.relative(serverRoot, pushManifestPath);
@@ -426,9 +428,9 @@ class Build {
       console.info(`Detected push manifest "${relPath}".`);
       // Note this constructor throws if invalid.
       this.pushManifest = new push.PushManifest(
-          JSON.parse(fs.readFileSync(pushManifestPath, 'utf8')) as
-              push.PushManifestData,
-          path.relative(serverRoot, buildDir));
+        JSON.parse(fs.readFileSync(pushManifestPath, 'utf8')) as
+        push.PushManifestData,
+        path.relative(serverRoot, buildDir));
     }
   }
 
@@ -476,11 +478,11 @@ function loadBuilds(root: string, config: Config | undefined): Build[] {
         continue;
       }
       builds.push(new Build(
-          i,
-          new Set(build.browserCapabilities),
-          path.posix.join(build.name, entrypoint),
-          path.join(root, build.name),
-          root));
+        i,
+        new Set(build.browserCapabilities),
+        path.posix.join(build.name, entrypoint),
+        path.join(root, build.name),
+        root));
     }
   }
 
@@ -492,8 +494,8 @@ function loadBuilds(root: string, config: Config | undefined): Build[] {
   for (const build of builds) {
     const requirements = Array.from(build.requirements.values());
     console.info(
-        `Registered entrypoint "${build.entrypoint}" with capabilities ` +
-        `[${requirements.join(',')}].`);
+      `Registered entrypoint "${build.entrypoint}" with capabilities ` +
+      `[${requirements.join(',')}].`);
     // Note `build.entrypoint` is relative to the server root, but that's not
     // neccessarily our cwd.
     // TODO Refactor to make filepath vs URL path and relative vs absolute
@@ -504,8 +506,8 @@ function loadBuilds(root: string, config: Config | undefined): Build[] {
   }
   if (!builds.find((b) => b.requirements.size === 0)) {
     console.warn(
-        'WARNING: All builds have a capability requirement. ' +
-        'Some browsers will display an error. Consider a fallback build.');
+      'WARNING: All builds have a capability requirement. ' +
+      'Some browsers will display an error. Consider a fallback build.');
   }
 
   return builds;
