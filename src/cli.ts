@@ -84,6 +84,8 @@ const argDefs = [
   }
 ];
 
+const prometheusUser = 'prom';
+
 export function run(argv: string[]) {
   collectDefaultMetrics();
   const args = commandLineArgs(argDefs, {argv});
@@ -158,7 +160,7 @@ export function run(argv: string[]) {
   app.use((req, res, next) => {
     if (req.path === '/prometheus') {
       const authHeader = req.header('Authorization');
-      const token = Buffer.from(`${config.username}:${config.password}`).toString('base64');
+      const token = Buffer.from(`${prometheusUser}:${process.env.PROMETHEUS_PASSWORD}`).toString('base64');
       const required = `Basic ${token}`;
       if (authHeader !== required) {
         res.setHeader('WWW-Authenticate', 'Basic');

@@ -64,8 +64,7 @@ export interface Config {
     name?: string,
     browserCapabilities?: capabilities.BrowserCapability[],
   }[];
-  username?: string;
-  password?: string;
+  headers?: Map<'Content-Security-Policy' | 'X-Frame-Options' | 'X-Content-Type-Options', string[]>;
 }
 
 // Matches URLs like "/foo/bar.png" but not "/foo.png/bar".
@@ -270,22 +269,28 @@ export function makeHandler(root?: string, config?: Config): (
         "*.adrttt.com",
     ];
 
-    response.setHeader('Content-Security-Policy',
-        `default-src 'self' 'unsafe-inline' 'unsafe-eval' ${defaultFallbackAllowedHosts.join(' ')}; `
-        + `script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: ${scriptSrcAllowedHosts.join(' ')} ; `
-        + `connect-src 'self' ${connectSrcAllowedHosts.join(' ')} ; `
-        + "font-src 'self' data: https://fonts.gstatic.com ; "
-        + `img-src data: blob: 'self' 'unsafe-inline' https://*.migrosone.com ${imageSrcAllowedHosts.join(' ')} ; `
-        + `frame-src ${frameSrcAllowedHosts.join(' ')} ; `
-        + `style-src 'self' 'unsafe-inline' ${styleSrcAllowedHosts.join(' ')} ;`
-        + `manifest-src 'self' ; `
-        + "worker-src 'self' blob: ;"
-        + "object-src 'none' ;");
+    if (config?.headers && config.headers.size > 0) {
+        for (const [headerName, headerValue] of config.headers) {
+            response.setHeader(headerName, headerValue);
+        }
+    }
+
+    // response.setHeader('Content-Security-Policy',
+    //     `default-src 'self' 'unsafe-inline' 'unsafe-eval' ${defaultFallbackAllowedHosts.join(' ')}; `
+    //     + `script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: ${scriptSrcAllowedHosts.join(' ')} ; `
+    //     + `connect-src 'self' ${connectSrcAllowedHosts.join(' ')} ; `
+    //     + "font-src 'self' data: https://fonts.gstatic.com ; "
+    //     + `img-src data: blob: 'self' 'unsafe-inline' https://*.migrosone.com ${imageSrcAllowedHosts.join(' ')} ; `
+    //     + `frame-src ${frameSrcAllowedHosts.join(' ')} ; `
+    //     + `style-src 'self' 'unsafe-inline' ${styleSrcAllowedHosts.join(' ')} ;`
+    //     + `manifest-src 'self' ; `
+    //     + "worker-src 'self' blob: ;"
+    //     + "object-src 'none' ;");
 
     response.setHeader('X-Frame-Options', 'SAMEORIGIN');
     response.setHeader('Strict-Transport-Security', 'max-age=0; includeSubDomains');
     response.setHeader('X-XSS-Protection', 1);
-    response.setHeader('X-Content-Type-Options', 'nosniff');
+    // response.setHeader('X-Content-Type-Options', 'nosniff');
 
 
     const urlPath = url.parse(request.url || '/').pathname || '/';
