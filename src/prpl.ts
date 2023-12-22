@@ -106,6 +106,7 @@ export function makeHandler(root?: string, config?: Config): (
         "https://www.googletagservices.com",
         "https://www.google-analytics.com",
         "www.googletagmanager.com",
+        "https://tagmanager.google.com",
         "*.googleapis.com",
         "*.googleadservices.com",
         "https://*.bkmexpress.com.tr",
@@ -174,7 +175,10 @@ export function makeHandler(root?: string, config?: Config): (
       "fonts.googleapis.com",
       "cdn.segmentify.com",
       "*.visualwebsiteoptimizer.com",
-      "maps.googleapis.com"
+      "maps.googleapis.com",
+      "https://googletagmanager.com",
+      "https://tagmanager.google.com",
+      "https://fonts.googleapis.com",
     ];
 
     const imageSrcAllowedHosts = [
@@ -227,6 +231,10 @@ export function makeHandler(root?: string, config?: Config): (
         "*.thebrighttag.com",
         "*.semasio.net",
         "*.dmxleo.com",
+        "https://googletagmanager.com",
+        "https://ssl.gstatic.com",
+        "https://www.gstatic.com",
+        "https://digiavantaj.cake.aclz.net"
     ];
 
     // json, html etc
