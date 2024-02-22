@@ -234,7 +234,8 @@ export function makeHandler(root?: string, config?: Config): (
         "https://googletagmanager.com",
         "https://ssl.gstatic.com",
         "https://www.gstatic.com",
-        "https://digiavantaj.cake.aclz.net"
+        "https://digiavantaj.cake.aclz.net",
+        "https://documents.colendilabs.com",
     ];
 
     // json, html etc
