@@ -107,6 +107,7 @@ export function makeHandler(root?: string, config?: Config): (
         "https://www.google-analytics.com",
         "www.googletagmanager.com",
         "https://tagmanager.google.com",
+        "https://googletagmanager.com",
         "*.googleapis.com",
         "*.googleadservices.com",
         "https://*.bkmexpress.com.tr",
@@ -148,7 +149,6 @@ export function makeHandler(root?: string, config?: Config): (
       "https://*.api.sociaplus.com",
       "https://*.webinstats.com",
       "https://sanalmarket.api.useinsider.com",
-      "https://optimize.google.com",
       "https://*.bkmexpress.com.tr",
       "https://www.linkadoo.co",
       "https://linkadoo.co",
@@ -232,6 +232,7 @@ export function makeHandler(root?: string, config?: Config): (
         "*.semasio.net",
         "*.dmxleo.com",
         "https://googletagmanager.com",
+        "www.googletagmanager.com",
         "https://ssl.gstatic.com",
         "https://www.gstatic.com",
         "https://digiavantaj.cake.aclz.net",
@@ -267,7 +268,6 @@ export function makeHandler(root?: string, config?: Config): (
         "*.visualwebsiteoptimizer.com",
         "*.masterpassturkiye.com",
         "logs.browser-intake-datadoghq.eu",
-        "*.segmentify.com",
         "*.criteo.com",
         "*.adjust.com",
         "app.adjust.net.in",
@@ -277,6 +277,7 @@ export function makeHandler(root?: string, config?: Config): (
         "maps.googleapis.com",
         "*.dahi.ai",
         "*.adrttt.com",
+        "https://*.migrosone.com"
     ];
 
     response.setHeader('Content-Security-Policy',
