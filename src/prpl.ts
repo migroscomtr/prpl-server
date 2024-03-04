@@ -261,6 +261,7 @@ export function makeHandler(root?: string, config?: Config): (
         "analytics.google.com",
         "*.googlesyndication.com",
         "*.googleadservices.com",
+        "https://*.googletagmanager.com",
         "macro.webinstats.com",
         "tazedirekt.webinstats.com",
         "fonts.googleapis.com",
