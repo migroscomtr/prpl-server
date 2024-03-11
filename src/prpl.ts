@@ -128,7 +128,7 @@ export function makeHandler(root?: string, config?: Config): (
         "https://*.criteo.com",
         "*.doubleclick.net",
         "affiliate.migros.com.tr",
-        "tags.bluekai.com",
+        "https://tags.bluekai.com",
         "*.mncdn.com",
         "*.adform.net",
         "*.storyly.io",
@@ -206,6 +206,7 @@ export function makeHandler(root?: string, config?: Config): (
         "*.doubleclick.net",
         "*.taboola.com", // criteo
         "cm.adform.net",
+        "c1.adform.net",
         "*.casalemedia.com",
         "id5-sync.com",
         "ad.360yield.com",
@@ -267,6 +268,8 @@ export function makeHandler(root?: string, config?: Config): (
         "*.adrttt.com",
         "https://*.migrosone.com",
         "*.facebook.com",
+        "https://www.google.com",
+        "magaza-iphone.migros.com.tr",
         ...scriptSrcAllowedHosts
     ];
 
