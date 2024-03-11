@@ -107,6 +107,7 @@ export function makeHandler(root?: string, config?: Config): (
         "https://www.google-analytics.com",
         "www.googletagmanager.com",
         "https://tagmanager.google.com",
+        "https://googletagmanager.com",
         "*.googleapis.com",
         "*.googleadservices.com",
         "https://*.bkmexpress.com.tr",
@@ -114,14 +115,11 @@ export function makeHandler(root?: string, config?: Config): (
         "https://challenges.cloudflare.com",
         "app.vwo.com",
         "*.visualwebsiteoptimizer.com",
-        "https://*.segmentify.com",
-        "https://cdn.sgmntfy.com",
         "https://js.go2sdk.com",
         "https://cdn.adjust.com",
         "https://live.maytap.me",
         "https://creativecdn.com",
         "https://*.cloudfront.net",
-        "https://js.go2sdk.com",
         "https://tags.bkrtx.com",
         "https://static.criteo.net",
         "https://connect.facebook.net",
@@ -166,6 +164,7 @@ export function makeHandler(root?: string, config?: Config): (
       "maps.googleapis.com",
       "*.adform.net",
       "https://wallet.moneypay.com.tr",
+      "*.googleadservices.com",
     ];
 
     const styleSrcAllowedHosts = [
@@ -231,6 +230,7 @@ export function makeHandler(root?: string, config?: Config): (
         "*.semasio.net",
         "*.dmxleo.com",
         "https://googletagmanager.com",
+        "www.googletagmanager.com",
         "https://ssl.gstatic.com",
         "https://www.gstatic.com",
         "https://digiavantaj.cake.aclz.net",
@@ -255,27 +255,19 @@ export function makeHandler(root?: string, config?: Config): (
     ];
 
     const connectSrcAllowedHosts = [
-        "www.google-analytics.com",
         "analytics.google.com",
-        "*.googlesyndication.com",
-        "*.googleadservices.com",
         "macro.webinstats.com",
         "tazedirekt.webinstats.com",
-        "fonts.googleapis.com",
         "*.gstatic.com",
-        "*.visualwebsiteoptimizer.com",
-        "*.masterpassturkiye.com",
         "logs.browser-intake-datadoghq.eu",
-        "*.criteo.com",
         "*.adjust.com",
         "app.adjust.net.in",
         "app.adjust.world",
-        "*.storyly.io",
-        "*.doubleclick.net",
-        "maps.googleapis.com",
         "*.dahi.ai",
         "*.adrttt.com",
-        "https://*.migrosone.com"
+        "https://*.migrosone.com",
+        "*.facebook.com",
+        ...scriptSrcAllowedHosts
     ];
 
     response.setHeader('Content-Security-Policy',
