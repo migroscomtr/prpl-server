@@ -128,7 +128,7 @@ export function makeHandler(root?: string, config?: Config): (
         "https://*.criteo.com",
         "*.doubleclick.net",
         "affiliate.migros.com.tr",
-        "https://tags.bluekai.com",
+        "*.bluekai.com",
         "*.mncdn.com",
         "*.adform.net",
         "*.storyly.io",
@@ -272,6 +272,7 @@ export function makeHandler(root?: string, config?: Config): (
         "www.google.com",
         "www.google.com.tr",
         "magaza-iphone.migros.com.tr",
+        "*.rubiconproject.com",
         ...scriptSrcAllowedHosts
     ];
 
