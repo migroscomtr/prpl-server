@@ -252,7 +252,8 @@ export function makeHandler(root?: string, config?: Config): (
         "tazedirekt.webinstats.com",
         "macro.webinstats.com",
         "*.facebook.com",
-        "maps.googleapis.com"
+        "maps.googleapis.com",
+        "https://*.cloudfront.net",
     ];
 
     const connectSrcAllowedHosts = [
@@ -268,7 +269,8 @@ export function makeHandler(root?: string, config?: Config): (
         "*.adrttt.com",
         "https://*.migrosone.com",
         "*.facebook.com",
-        "https://www.google.com",
+        "www.google.com",
+        "www.google.com.tr",
         "magaza-iphone.migros.com.tr",
         ...scriptSrcAllowedHosts
     ];
