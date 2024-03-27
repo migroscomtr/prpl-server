@@ -101,6 +101,17 @@ export function makeHandler(root?: string, config?: Config): (
         writePlainTextError(response, err);
       }
     };
+
+      /**
+       * 'self' does not includes subdomains
+       *  migros.com.tr/rest become rest.migros.com.tr
+       *  in order to use other libraries like /user-edge
+       */
+      const restSubdomains = [
+        "*.rest.migros.com.tr",
+        "*.rest.macrocenter.com.tr",
+        "*.rest.tazedirekt.com",
+    ]
     const scriptSrcAllowedHosts = [
         "https://*.googlesyndication.com",
         "https://www.googletagservices.com",
@@ -165,6 +176,7 @@ export function makeHandler(root?: string, config?: Config): (
       "*.adform.net",
       "https://wallet.moneypay.com.tr",
       "*.googleadservices.com",
+      "*.facebook.com",
     ];
 
     const styleSrcAllowedHosts = [
@@ -273,6 +285,7 @@ export function makeHandler(root?: string, config?: Config): (
         "www.google.com.tr",
         "magaza-iphone.migros.com.tr",
         "*.rubiconproject.com",
+        ...restSubdomains,
         ...scriptSrcAllowedHosts
     ];
 
