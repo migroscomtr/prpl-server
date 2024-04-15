@@ -104,7 +104,7 @@ export function makeHandler(root?: string, config?: Config): (
 
     const scriptSrcAllowedHosts = [
         "https://*.googlesyndication.com",
-        "https://www.googletagservices.com",
+        "https://*.googletagservices.com",
         "https://www.google-analytics.com",
         "www.googletagmanager.com",
         "https://tagmanager.google.com",
