@@ -134,7 +134,8 @@ export function makeHandler(root?: string, config?: Config): (
         "*.adform.net",
         "*.storyly.io",
         "cdn.jsdelivr.net",
-        "https://digiavantaj.cake.aclz.net"
+        "https://digiavantaj.cake.aclz.net",
+        "https://bundles.efilli.com",
     ];
 
     const frameSrcAllowedHosts = [
