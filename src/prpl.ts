@@ -135,7 +135,7 @@ export function makeHandler(root?: string, config?: Config): (
         "*.storyly.io",
         "cdn.jsdelivr.net",
         "https://digiavantaj.cake.aclz.net",
-        "https://bundles.efilli.com",
+        "*.efilli.com",
     ];
 
     const frameSrcAllowedHosts = [
@@ -239,6 +239,8 @@ export function makeHandler(root?: string, config?: Config): (
         "https://www.gstatic.com",
         "https://digiavantaj.cake.aclz.net",
         "https://documents.colendilabs.com",
+        "https://uploads-ssl.webflow.com", // efilli
+        "*.efilli.com"
     ];
 
     // json, html etc
