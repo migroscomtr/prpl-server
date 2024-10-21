@@ -136,6 +136,7 @@ export function makeHandler(root?: string, config?: Config): (
         "cdn.jsdelivr.net",
         "https://digiavantaj.cake.aclz.net",
         "*.efilli.com",
+        "https://analytics.tiktok.com",
     ];
 
     const frameSrcAllowedHosts = [
@@ -168,13 +169,14 @@ export function makeHandler(root?: string, config?: Config): (
       "https://wallet.moneypay.com.tr",
       "*.googleadservices.com",
       "*.facebook.com",
+      "https://analytics.tiktok.com",
     ];
 
     const styleSrcAllowedHosts = [
       "*.googlesyndication.com",
       "www.googletagservices.com",
+      "www.googletagmanager.com",
       "fonts.googleapis.com",
-      "cdn.segmentify.com",
       "*.visualwebsiteoptimizer.com",
       "maps.googleapis.com",
       "https://googletagmanager.com",
@@ -223,6 +225,7 @@ export function makeHandler(root?: string, config?: Config): (
         "exchange.mediavine.com",
         "sync.outbrain.com",
         "trends.revcontent.com",
+        "https://sync.1rx.io", // criteo
         "criteo-partners.tremorhub.com", // criteo
         "ad.yieldlab.net",
         "*.migros.com.tr",
@@ -240,7 +243,8 @@ export function makeHandler(root?: string, config?: Config): (
         "https://digiavantaj.cake.aclz.net",
         "https://documents.colendilabs.com",
         "https://uploads-ssl.webflow.com", // efilli
-        "*.efilli.com"
+        "*.efilli.com",
+        "https://analytics.tiktok.com",
     ];
 
     // json, html etc
