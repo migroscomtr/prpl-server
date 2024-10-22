@@ -170,6 +170,7 @@ export function makeHandler(root?: string, config?: Config): (
       "*.googleadservices.com",
       "*.facebook.com",
       "https://analytics.tiktok.com",
+      "https://www.googletagmanager.com" // Google Ads
     ];
 
     const styleSrcAllowedHosts = [
