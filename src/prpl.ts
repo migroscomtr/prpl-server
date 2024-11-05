@@ -294,7 +294,7 @@ export function makeHandler(root?: string, config?: Config): (
         + "font-src 'self' data: https://fonts.gstatic.com ; "
         + `img-src data: blob: 'self' 'unsafe-inline' https://*.migrosone.com ${imageSrcAllowedHosts.join(' ')} ; `
         + `frame-src ${frameSrcAllowedHosts.join(' ')} ; `
-        + "frame-ancestor 'self https://*.migros.com.tr"
+        + "frame-ancestors 'self' https://*.migros.com.tr ; "
         + `style-src 'self' 'unsafe-inline' ${styleSrcAllowedHosts.join(' ')} ;`
         + `manifest-src 'self' ; `
         + "worker-src 'self' blob: ;"
