@@ -118,6 +118,7 @@ export function makeHandler(root?: string, config?: Config): (
         "*.visualwebsiteoptimizer.com",
         "https://js.go2sdk.com",
         "https://cdn.adjust.com",
+        "https://sdk.adjust.com",
         "https://live.maytap.me",
         "https://creativecdn.com",
         "https://*.cloudfront.net",
@@ -247,6 +248,7 @@ export function makeHandler(root?: string, config?: Config): (
         "https://uploads-ssl.webflow.com", // efilli
         "*.efilli.com",
         "https://analytics.tiktok.com",
+        "*.adjust.com", // adjust
     ];
 
     // json, html etc
