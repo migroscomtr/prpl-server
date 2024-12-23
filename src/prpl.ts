@@ -138,7 +138,8 @@ export function makeHandler(root?: string, config?: Config): (
         "https://digiavantaj.cake.aclz.net",
         "*.efilli.com",
         "https://analytics.tiktok.com",
-        "*.cloudflareinsights.com"
+        "*.cloudflareinsights.com",
+        "https://browser-intake-datadoghq.eu" // RUM
     ];
 
     const frameSrcAllowedHosts = [
