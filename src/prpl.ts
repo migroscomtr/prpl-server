@@ -139,7 +139,8 @@ export function makeHandler(root?: string, config?: Config): (
         "*.efilli.com",
         "https://analytics.tiktok.com",
         "*.cloudflareinsights.com",
-        "https://browser-intake-datadoghq.eu" // RUM
+        "https://browser-intake-datadoghq.eu", // RUM
+        "https://*.adtrafficquality.google",
     ];
 
     const frameSrcAllowedHosts = [
@@ -287,7 +288,6 @@ export function makeHandler(root?: string, config?: Config): (
         "www.google.com.tr",
         "magaza-iphone.migros.com.tr",
         "*.rubiconproject.com",
-        "https://ep1.adtrafficquality.google",
         ...scriptSrcAllowedHosts
     ];
 
