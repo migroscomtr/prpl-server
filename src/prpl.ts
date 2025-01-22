@@ -140,7 +140,7 @@ export function makeHandler(root?: string, config?: Config): (
         "https://analytics.tiktok.com",
         "*.cloudflareinsights.com",
         "https://browser-intake-datadoghq.eu", // RUM
-        "https://*.adtrafficquality.google",
+        "https://*.adtrafficquality.google"
     ];
 
     const frameSrcAllowedHosts = [
@@ -174,7 +174,8 @@ export function makeHandler(root?: string, config?: Config): (
       "*.googleadservices.com",
       "*.facebook.com",
       "https://analytics.tiktok.com",
-      "https://www.googletagmanager.com" // Google Ads
+      "https://www.googletagmanager.com",
+      "https://*.adtrafficquality.google" // Google Ads
     ];
 
     const styleSrcAllowedHosts = [
@@ -186,7 +187,7 @@ export function makeHandler(root?: string, config?: Config): (
       "maps.googleapis.com",
       "https://googletagmanager.com",
       "https://tagmanager.google.com",
-      "https://fonts.googleapis.com",
+      "https://fonts.googleapis.com"
     ];
 
     const imageSrcAllowedHosts = [
@@ -250,7 +251,7 @@ export function makeHandler(root?: string, config?: Config): (
         "https://uploads-ssl.webflow.com", // efilli
         "*.efilli.com",
         "https://analytics.tiktok.com",
-        "*.adjust.com", // adjust
+        "*.adjust.com" // adjust
     ];
 
     // json, html etc
@@ -268,7 +269,7 @@ export function makeHandler(root?: string, config?: Config): (
         "macro.webinstats.com",
         "*.facebook.com",
         "maps.googleapis.com",
-        "https://*.cloudfront.net",
+        "https://*.cloudfront.net"
     ];
 
     const connectSrcAllowedHosts = [
