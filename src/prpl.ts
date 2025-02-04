@@ -186,7 +186,8 @@ export function makeHandler(root?: string, config?: Config): (
       "maps.googleapis.com",
       "https://googletagmanager.com",
       "https://tagmanager.google.com",
-      "https://fonts.googleapis.com"
+      "https://fonts.googleapis.com",
+      "https://assets.migrosone.com" // CDN
     ];
 
     const imageSrcAllowedHosts = [
@@ -250,7 +251,8 @@ export function makeHandler(root?: string, config?: Config): (
         "https://uploads-ssl.webflow.com", // efilli
         "*.efilli.com",
         "https://analytics.tiktok.com",
-        "*.adjust.com" // adjust
+        "*.adjust.com", // adjust
+        "https://assets.migrosone.com" // CDN
     ];
 
     // json, html etc
