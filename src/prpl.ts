@@ -140,7 +140,7 @@ export function makeHandler(root?: string, config?: Config): (
         "https://analytics.tiktok.com",
         "*.cloudflareinsights.com",
         "https://browser-intake-datadoghq.eu", // RUM
-        "https://*.adtrafficquality.google"
+        "https://assets.migrosone.com" // CDN
     ];
 
     const frameSrcAllowedHosts = [
@@ -175,7 +175,6 @@ export function makeHandler(root?: string, config?: Config): (
       "*.facebook.com",
       "https://analytics.tiktok.com",
       "https://www.googletagmanager.com",
-      "https://*.adtrafficquality.google" // Google Ads
     ];
 
     const styleSrcAllowedHosts = [
