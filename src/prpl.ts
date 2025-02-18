@@ -141,7 +141,7 @@ export function makeHandler(root?: string, config?: Config): (
         "*.cloudflareinsights.com",
         "https://browser-intake-datadoghq.eu", // RUM
         "https://assets.migrosone.com", // CDN
-        "https://*.adtrafficquality.google",
+        "https://*.adtrafficquality.google", // Google Ads
     ];
 
     const frameSrcAllowedHosts = [
@@ -254,7 +254,8 @@ export function makeHandler(root?: string, config?: Config): (
         "*.efilli.com",
         "https://analytics.tiktok.com",
         "*.adjust.com", // adjust
-        "https://assets.migrosone.com" // CDN
+        "https://assets.migrosone.com", // CDN
+        "https://*.adtrafficquality.google", // Google Ads
     ];
 
     // json, html etc
