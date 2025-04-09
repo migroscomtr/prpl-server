@@ -142,6 +142,7 @@ export function makeHandler(root?: string, config?: Config): (
         "https://browser-intake-datadoghq.eu", // RUM
         "https://assets.migrosone.com", // CDN
         "https://*.adtrafficquality.google", // Google Ads
+        "https://media.flixcar.com"
     ];
 
     const frameSrcAllowedHosts = [
@@ -176,7 +177,8 @@ export function makeHandler(root?: string, config?: Config): (
       "*.facebook.com",
       "https://analytics.tiktok.com",
       "https://www.googletagmanager.com",
-      "https://*.adtrafficquality.google" // Google Ads
+      "https://*.adtrafficquality.google" ,// Google Ads
+      "https://media.flixcar.com"
     ];
 
     const styleSrcAllowedHosts = [
@@ -256,6 +258,7 @@ export function makeHandler(root?: string, config?: Config): (
         "*.adjust.com", // adjust
         "https://assets.migrosone.com", // CDN
         "https://*.adtrafficquality.google", // Google Ads
+        "https://media.flixcar.com"
     ];
 
     // json, html etc
