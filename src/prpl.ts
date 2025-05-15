@@ -258,7 +258,8 @@ export function makeHandler(root?: string, config?: Config): (
         "*.adjust.com", // adjust
         "https://assets.migrosone.com", // CDN
         "https://*.adtrafficquality.google", // Google Ads
-        "https://media.flixcar.com" // Flixmedia
+        "https://media.flixcar.com", // Flixmedia
+        "*.m1grocery.com"
     ];
 
     // json, html etc
