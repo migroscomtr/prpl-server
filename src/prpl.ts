@@ -143,6 +143,7 @@ export function makeHandler(root?: string, config?: Config): (
         "https://assets.migrosone.com", // CDN
         "https://*.adtrafficquality.google", // Google Ads
         "https://media.flixcar.com/",// Flixmedia
+        "https://cdn.mlink.com.tr"
     ];
 
     const frameSrcAllowedHosts = [
