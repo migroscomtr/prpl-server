@@ -260,7 +260,8 @@ export function makeHandler(root?: string, config?: Config): (
         "https://assets.migrosone.com", // CDN
         "https://*.adtrafficquality.google", // Google Ads
         "https://media.flixcar.com", // Flixmedia
-        "*.m1grocery.com"
+        "*.m1grocery.com",
+        "https://event.mlink.com.tr"
     ];
 
     // json, html etc
