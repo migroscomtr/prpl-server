@@ -300,6 +300,7 @@ export function makeHandler(root?: string, config?: Config): (
         "magaza-iphone.migros.com.tr",
         "*.rubiconproject.com",
         "*.m1grocery.com",
+        "https://event.mlink.com.tr",
         ...scriptSrcAllowedHosts
     ];
 
